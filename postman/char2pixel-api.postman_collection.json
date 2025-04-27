@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "Char2Pixel API",
+		"description": "Collection for testing the Char2Pixel API that converts characters to CMYK pixel values",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"health"
+					]
+				},
+				"description": "Check if the API is running"
+			},
+			"response": []
+		},
+		{
+			"name": "Convert ASCII to CMYK",
+			"item": [
+				{
+					"name": "Lowercase 'a'",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/ascii-to-cmyk/97",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"ascii-to-cmyk",
+								"97"
+							]
+						},
+						"description": "Convert lowercase 'a' (ASCII 97) to CMYK"
+					},
+					"response": []
+				},
+				{
+					"name": "Uppercase 'A'",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/ascii-to-cmyk/65",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"ascii-to-cmyk",
+								"65"
+							]
+						},
+						"description": "Convert uppercase 'A' (ASCII 65) to CMYK"
+					},
+					"response": []
+				},
+				{
+					"name": "Number '1'",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/ascii-to-cmyk/49",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"ascii-to-cmyk",
+								"49"
+							]
+						},
+						"description": "Convert number '1' (ASCII 49) to CMYK"
+					},
+					"response": []
+				},
+				{
+					"name": "Marathi 'अ'",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/ascii-to-cmyk/2309",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"ascii-to-cmyk",
+								"2309"
+							]
+						},
+						"description": "Convert Marathi 'अ' (Unicode 0x0905) to CMYK"
+					},
+					"response": []
+				},
+				{
+					"name": "Custom Character",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/ascii-to-cmyk/{{characterCode}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"ascii-to-cmyk",
+								"{{characterCode}}"
+							]
+						},
+						"description": "Convert any character code to CMYK"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for converting character codes to CMYK values"
+		},
+		{
+			"name": "Examples",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/examples",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"examples"
+					]
+				},
+				"description": "Get example conversions for different character types"
+			},
+			"response": []
+		},
+		{
+			"name": "Unicode Blocks",
+			"item": [
+				{
+					"name": "Devanagari Block",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/unicode-block/Devanagari",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"unicode-block",
+								"Devanagari"
+							]
+						},
+						"description": "Get all characters in the Devanagari block"
+					},
+					"response": []
+				},
+				{
+					"name": "Basic Latin Block",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/unicode-block/Basic%20Latin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"unicode-block",
+								"Basic Latin"
+							]
+						},
+						"description": "Get all characters in the Basic Latin block"
+					},
+					"response": []
+				},
+				{
+					"name": "Custom Block",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/unicode-block/{{blockName}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"unicode-block",
+								"{{blockName}}"
+							]
+						},
+						"description": "Get all characters in a specific Unicode block"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for retrieving Unicode block information"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "characterCode",
+			"value": "97",
+			"type": "string"
+		},
+		{
+			"key": "blockName",
+			"value": "Devanagari",
+			"type": "string"
+		}
+	]
+} 

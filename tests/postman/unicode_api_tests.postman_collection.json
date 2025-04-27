@@ -1,0 +1,1418 @@
+{
+    "info": {
+        "name": "Unicode API Tests",
+        "description": "Test collection for the Char2Pixel API Unicode endpoints",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Basic Latin Characters",
+            "item": [
+                {
+                    "name": "Get Uppercase A",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0041",
+                        "description": "Get information for uppercase letter A"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(65);",
+                                    "    pm.expect(response.character).to.equal('A');",
+                                    "    pm.expect(response.category).to.equal('Lu');",
+                                    "    pm.expect(response.block).to.equal('Basic Latin');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Lowercase a",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0061",
+                        "description": "Get information for lowercase letter a"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(97);",
+                                    "    pm.expect(response.character).to.equal('a');",
+                                    "    pm.expect(response.category).to.equal('Ll');",
+                                    "    pm.expect(response.block).to.equal('Basic Latin');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Number 1",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0031",
+                        "description": "Get information for number 1"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(49);",
+                                    "    pm.expect(response.character).to.equal('1');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Basic Latin');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Devanagari Characters",
+            "item": [
+                {
+                    "name": "Get Devanagari A",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0905",
+                        "description": "Get information for Devanagari letter A (अ)"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(2309);",
+                                    "    pm.expect(response.character).to.equal('अ');",
+                                    "    pm.expect(response.block).to.equal('Devanagari');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Block Information",
+            "item": [
+                {
+                    "name": "Get Basic Latin Block",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/block/Basic Latin",
+                        "description": "Get all characters in Basic Latin block"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response is an array', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response).to.be.an('array');",
+                                    "    pm.expect(response.length).to.be.greaterThan(0);",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Devanagari Block",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/block/Devanagari",
+                        "description": "Get all characters in Devanagari block"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response is an array', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response).to.be.an('array');",
+                                    "    pm.expect(response.length).to.be.greaterThan(0);",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CMYK Conversion",
+            "item": [
+                {
+                    "name": "Convert A to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/65",
+                        "description": "Convert uppercase A to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo).to.be.an('object');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert Devanagari A to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/2309",
+                        "description": "Convert Devanagari A (अ) to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo).to.be.an('object');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('अ');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Error Cases",
+            "item": [
+                {
+                    "name": "Invalid Character Code",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/INVALID",
+                        "description": "Try to get information for an invalid character code"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 400', function () {",
+                                    "    pm.response.to.have.status(400);",
+                                    "});",
+                                    "pm.test('Response contains error message', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.error).to.be.a('string');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Invalid Block Name",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/block/NonExistentBlock",
+                        "description": "Try to get information for a non-existent Unicode block"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response is an empty array', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response).to.be.an('array');",
+                                    "    pm.expect(response).to.be.empty;",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "English Numerals",
+            "item": [
+                {
+                    "name": "Get 0",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0030",
+                        "description": "Get information for English digit 0"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(48);",
+                                    "    pm.expect(response.character).to.equal('0');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Basic Latin');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get 1",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0031",
+                        "description": "Get information for English digit 1"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(49);",
+                                    "    pm.expect(response.character).to.equal('1');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Basic Latin');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get 2",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0032",
+                        "description": "Get information for English digit 2"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(50);",
+                                    "    pm.expect(response.character).to.equal('2');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Basic Latin');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get 3",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0033",
+                        "description": "Get information for English digit 3"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(51);",
+                                    "    pm.expect(response.character).to.equal('3');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Basic Latin');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get 4",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0034",
+                        "description": "Get information for English digit 4"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(52);",
+                                    "    pm.expect(response.character).to.equal('4');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Basic Latin');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get 5",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0035",
+                        "description": "Get information for English digit 5"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(53);",
+                                    "    pm.expect(response.character).to.equal('5');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Basic Latin');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get 6",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0036",
+                        "description": "Get information for English digit 6"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(54);",
+                                    "    pm.expect(response.character).to.equal('6');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Basic Latin');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get 7",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0037",
+                        "description": "Get information for English digit 7"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(55);",
+                                    "    pm.expect(response.character).to.equal('7');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Basic Latin');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get 8",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0038",
+                        "description": "Get information for English digit 8"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(56);",
+                                    "    pm.expect(response.character).to.equal('8');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Basic Latin');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get 9",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0039",
+                        "description": "Get information for English digit 9"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(57);",
+                                    "    pm.expect(response.character).to.equal('9');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Basic Latin');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Marathi Numerals",
+            "item": [
+                {
+                    "name": "Get ०",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0966",
+                        "description": "Get information for Marathi digit ०"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(2406);",
+                                    "    pm.expect(response.character).to.equal('०');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Devanagari');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get १",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0967",
+                        "description": "Get information for Marathi digit १"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(2407);",
+                                    "    pm.expect(response.character).to.equal('१');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Devanagari');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get २",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0968",
+                        "description": "Get information for Marathi digit २"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(2408);",
+                                    "    pm.expect(response.character).to.equal('२');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Devanagari');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get ३",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/0969",
+                        "description": "Get information for Marathi digit ३"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(2409);",
+                                    "    pm.expect(response.character).to.equal('३');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Devanagari');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get ४",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/096A",
+                        "description": "Get information for Marathi digit ४"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(2410);",
+                                    "    pm.expect(response.character).to.equal('४');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Devanagari');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get ५",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/096B",
+                        "description": "Get information for Marathi digit ५"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(2411);",
+                                    "    pm.expect(response.character).to.equal('५');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Devanagari');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get ६",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/096C",
+                        "description": "Get information for Marathi digit ६"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(2412);",
+                                    "    pm.expect(response.character).to.equal('६');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Devanagari');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get ७",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/096D",
+                        "description": "Get information for Marathi digit ७"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(2413);",
+                                    "    pm.expect(response.character).to.equal('७');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Devanagari');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get ८",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/096E",
+                        "description": "Get information for Marathi digit ८"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(2414);",
+                                    "    pm.expect(response.character).to.equal('८');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Devanagari');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Get ९",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/char/096F",
+                        "description": "Get information for Marathi digit ९"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains correct character info', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.code).to.equal(2415);",
+                                    "    pm.expect(response.character).to.equal('९');",
+                                    "    pm.expect(response.category).to.equal('Nd');",
+                                    "    pm.expect(response.block).to.equal('Devanagari');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CMYK Conversion",
+            "item": [
+                {
+                    "name": "Convert English 0 to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/48",
+                        "description": "Convert English digit 0 to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('0');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert English 1 to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/49",
+                        "description": "Convert English digit 1 to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('1');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert English 2 to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/50",
+                        "description": "Convert English digit 2 to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('2');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert English 3 to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/51",
+                        "description": "Convert English digit 3 to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('3');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert English 4 to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/52",
+                        "description": "Convert English digit 4 to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('4');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert English 5 to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/53",
+                        "description": "Convert English digit 5 to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('5');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert English 6 to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/54",
+                        "description": "Convert English digit 6 to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('6');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert English 7 to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/55",
+                        "description": "Convert English digit 7 to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('7');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert English 8 to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/56",
+                        "description": "Convert English digit 8 to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('8');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert English 9 to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/57",
+                        "description": "Convert English digit 9 to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('9');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert Marathi ० to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/2406",
+                        "description": "Convert Marathi digit ० to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('०');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert Marathi १ to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/2407",
+                        "description": "Convert Marathi digit १ to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('१');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert Marathi २ to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/2408",
+                        "description": "Convert Marathi digit २ to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('२');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert Marathi ३ to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/2409",
+                        "description": "Convert Marathi digit ३ to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('३');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert Marathi ४ to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/2410",
+                        "description": "Convert Marathi digit ४ to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('४');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert Marathi ५ to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/2411",
+                        "description": "Convert Marathi digit ५ to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('५');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert Marathi ६ to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/2412",
+                        "description": "Convert Marathi digit ६ to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('६');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert Marathi ७ to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/2413",
+                        "description": "Convert Marathi digit ७ to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('७');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert Marathi ८ to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/2414",
+                        "description": "Convert Marathi digit ८ to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('८');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Convert Marathi ९ to CMYK",
+                    "request": {
+                        "method": "GET",
+                        "url": "http://localhost:3000/api/ascii-to-cmyk/2415",
+                        "description": "Convert Marathi digit ९ to CMYK values"
+                    },
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Status code is 200', function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "pm.test('Response contains CMYK values', function () {",
+                                    "    const response = pm.response.json();",
+                                    "    pm.expect(response.cmyk).to.be.an('object');",
+                                    "    pm.expect(response.cmyk).to.have.all.keys('c', 'm', 'y', 'k');",
+                                    "    pm.expect(response.characterInfo.character).to.equal('९');",
+                                    "});"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+} 
